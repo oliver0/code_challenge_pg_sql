@@ -28,6 +28,15 @@ $(document).ready(function () {
     postTreat(newTreat);
   });
 
+  $('.container').on('click', '.delete', function(){
+
+    var id = $(this).parent().data('id');
+    console.log(id);
+    if(confirm('Are you sure you want to delete this treat?')){
+      deleteTreat(id);
+    }
+  });
+
   /**---------- AJAX Functions ----------**/
 
   // GET /treats
@@ -78,6 +87,22 @@ $(document).ready(function () {
     });
   }
 
+  function deleteTreat(id){
+    $.ajax({
+      type: 'DELETE',
+      url: '/treats/' + id,
+      success: function(response){
+        console.log('delete successful!');
+        clearDom();
+        getTreats();
+      },
+      error: function(){
+        console.log('could not delete');
+      }
+
+    });
+  }
+
   /** ---------- DOM Functions ----------**/
 
   function clearDom() {
@@ -111,6 +136,7 @@ $(document).ready(function () {
                   '</div>' +
                   '<h3>' + treat.name + '</h3>' +
                   '<p>' + treat.description + '</p>' +
+                  '<button class="delete">Delete</button>'+
                   '</div>');
 
     $treat.data('id', treat.id);
