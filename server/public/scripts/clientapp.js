@@ -8,7 +8,7 @@ $(document).ready(function () {
     event.preventDefault();
 
     var queryString = $('#search').val();
-
+    console.log(queryString);
     searchTreats(queryString);
   });
 
@@ -65,6 +65,7 @@ $(document).ready(function () {
 
   // POST /treats
   function postTreat(treat) {
+    console.log(treat);
     $.ajax({
       method: 'POST',
       url: '/treats',

@@ -4,8 +4,10 @@ var path = require('path');
 var port = process.env.PORT || 3000;
 var connectionString = "postgres://localhost:5432/sigma";
 var treats = require('./routes/treats');
-
+var bodyParser = require('body-parser');
 /*** Build out a module to manage our treats requests. ***/
+
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use('/treats', treats);
 
