@@ -1,6 +1,0 @@
-CREATE TABLE treats (
-id SERIAL PRIMARY KEY,
-name VARCHAR(30) NOT NULL,
-description text NOT NULL,
-pic VARCHAR(120)
-);

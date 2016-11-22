@@ -37,6 +37,15 @@ $(document).ready(function () {
     }
   });
 
+  $('.container').on('click', '.delete', function(){
+
+    var id = $(this).parent().data('id');
+    console.log(id);
+    if(confirm('Are you sure you want to delete this treat?')){
+      deleteTreat(id);
+    }
+  });
+
   /**---------- AJAX Functions ----------**/
 
   // GET /treats
@@ -134,9 +143,10 @@ $(document).ready(function () {
                   '</div>' +
                   '</div>' +
                   '</div>' +
-                  '<h3>' + treat.name + '</h3>' +
-                  '<p>' + treat.description + '</p>' +
+                  '<input type="text" name="name" value="' + treat.name + '" />'+
+                  '<input type="text" name="description" value="' + treat.description + '" />' +
                   '<button class="delete">Delete</button>'+
+                  '<button class="update">Update</button>'+
                   '</div>');
 
     $treat.data('id', treat.id);
